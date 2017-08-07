@@ -1,0 +1,81 @@
+ body {
+    overflow: hidden;
+    font-size: small;
+    font-family: verdana, arial, helvetica, sans-serif;
+    background: rgb(255,255,255); /* white bg */
+    padding: 20px;
+}
+
+#loadingmessage {
+    display: none;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.logo {
+	background: rgb(255,255,255);
+	width: 1920px;
+	height: 50px;
+	padding: 0 5px 0;
+}
+
+.titletop {
+	width: 100%;
+	margin-left: -30px;
+	background: rgb(0,74,128); /* department blue */
+	font-style: italic;
+	padding: 5px 32px 0px;
+	text-shadow: 1px 1px black;	
+    font-size: 20px;
+    color: rgb(255,255,255);
+    font-family: Calibri;
+}
+		
+.titlebottom {
+	width: 100%;
+	margin-left: -30px;
+	background: rgb(0,74,128); /* department blue */
+	font-style: italic;
+	padding: 0 32px 20px;
+	text-shadow: 1px 1px black;	
+    font-size: 20px;
+    color: rgb(255,255,255);
+    font-family: Calibri;
+}
+		
+.titlebold {
+    font-weight: bold;
+    color: rgb(255,255,255);
+}
+
+#editor {
+    width: 600px;
+    height: 375px;
+    border: 2px solid gray;
+}
+
+#button {
+    width: 100px;
+}
+
+#result_tests {
+    display: none;
+}
+
+td {
+    border: 1px solid;
+    border-spacing: 0;
+    border-collapse: collapse;
+    padding: 3px;
+}
+
+.indent {
+    border: none;
+    padding: 0px;
+}

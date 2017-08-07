@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <script src="../ace/src/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/challenge.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+  <title>IntMax</title>
+</head>
+<body>
+
+<div id="loadingmessage"><img src="../img/ajax-loader.gif"/></div>
+
+<div class="logo"><a href="https://www.hs-fulda.de/"><img src="../../img/logo.jpg" width="274" height="50"/></a></div>
+<p></p>
+<div class="titletop titlebold">Fachbereich</div>
+<div class="titlebottom">Angewandte Informatik</div>
+<p></p>
+
+<div id="description">Testtext
+  <p>Mehr Testtext</p>
+</div>
+
+<table border="0">
+  <tbody>
+    <tr>
+      <td class="indent" width="700" valign="top">
+<pre id="editor">public int intMax(int a, int b, int c) {
+  int max;
+  
+  // First check between a and b
+  if (a > b) {
+    max = a;
+  } else {
+    max = b;
+  }
+  
+  // Now check between max and c
+  if (c > max) {
+    max = c;
+  }
+  
+  return max;
+  
+  // Could use the built in Math.max(x, y) function which selects the larger
+  // of two values.
+}</pre>
+
+<button id="button" onclick="sendCodeAce();">Ausführen</button>
+      </td>
+      <td class="indent" width="500" valign="top">
+        <p id="result_outcome" class="result_all"><span id="outcome"></span></p>
+        <p id="result_cmpinfo" class="result_all"><span id="cmpinfo"></span></p>
+        <p id="result_tests" class="result_all">Testergebnisse: <span id="tests"></span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.session.setMode("ace/mode/java");
+</script>
+
+</body>
+</html>
