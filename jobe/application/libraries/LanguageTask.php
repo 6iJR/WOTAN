@@ -16,7 +16,7 @@
 require_once('application/libraries/resultobject.php');
 
 define('ACTIVE_USERS', 1);  // The key for the shared memory active users array
-define('MAX_RETRIES', 5);   // Maximum retries (1 secs per retry), waiting for free user account
+define('MAX_RETRIES', 20);   // Maximum retries (1 secs per retry), waiting for free user account
 
 class OverloadException extends Exception {
 }
@@ -42,7 +42,7 @@ abstract class Task {
     public $default_params = array(
         'disklimit'     => 20,      // MB (for normal files)
         'streamsize'    => 2,       // MB (for stdout/stderr)
-        'cputime'       => 15,       // secs
+        'cputime'       => 5,       // secs
         'memorylimit'   => 200,     // MB
         'numprocs'      => 20,
         'compileargs'   => array(),
