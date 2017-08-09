@@ -15,8 +15,8 @@
 
 require_once('application/libraries/resultobject.php');
 
-define('ACTIVE_USERS', 1);  // The key for the shared memory active users array
-define('MAX_RETRIES', 20);   // Maximum retries (1 secs per retry), waiting for free user account
+define('ACTIVE_USERS', 5);  // The key for the shared memory active users array
+define('MAX_RETRIES', 10);   // Maximum retries (1 secs per retry), waiting for free user account
 
 class OverloadException extends Exception {
 }

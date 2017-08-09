@@ -9,7 +9,7 @@
  * @copyright  2014 Richard Lobb, University of Canterbury
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
- * @modify     2017 Andre Lempertz, University of Applied Sciences Fulda
+ * @modify     2017 Andre Lempertz, Fulda University of Applied Sciences
  */
 
 require_once('application/libraries/LanguageTask.php');
@@ -106,7 +106,7 @@ class Java_Task extends Task {
 
         //counter for possible failed tests
         $j = 0;
-        $hiddenflag1;
+        $hiddenflag1 = 0;
         $hiddenflag2 = 0;
 
         $this->tests .= "<table cellspacing=\"0\"><tr><th>Erwartetes Ergebnis</th><th>Dein Ergebnis</th><th></th><th></th><th>Hinweise</th></tr>";
@@ -125,16 +125,16 @@ class Java_Task extends Task {
                 }
                 $this->tests .=     "<td>" . $hints[1][$i] . "</td></tr>";
             } else if (strpos($testresults, $descriptions[2][$i]) === false) {
-                $hiddenflag1 = true;
+                $hiddenflag1 = 1;
             } else {
                 $hiddenflag2 = 1;
             }
         }
         if($hiddenflag2 == 1) {
-            $this->tests .= "<tr><td colspan=\"2\">" . "versteckte weitere Tests" . "</td>
+            $this->tests .= "<tr><td colspan=\"2\">" . "weitere Tests" . "</td>
                             <td>NICHT BESTANDEN</td><td style=\"width:20px;background-color:red\"></td>";
-        } else if($hiddenflag1 == true && $hiddenflag2 == 0) {
-            $this->tests .= "<tr><td colspan=\"2\">" . "versteckte weitere Tests" . "</td>
+        } else if($hiddenflag1 == 1 && $hiddenflag2 == 0) {
+            $this->tests .= "<tr><td colspan=\"2\">" . "weitere Tests" . "</td>
                             <td>BESTANDEN</td><td style=\"width:20px;background-color:green\"></td>";
         }
         $this->tests .= "</table>";

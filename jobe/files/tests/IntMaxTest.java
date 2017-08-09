@@ -8,7 +8,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "c ist das Maximum";
 
 	Assert.assertEquals("intMax(1, 2, 3) -> 3", 3, tester.intMax(1, 2, 3));
 	}
@@ -18,7 +18,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "b ist das Maximum";
 
 	Assert.assertEquals("intMax(1, 3, 2) -> 3", 3, tester.intMax(1, 3, 2));
 	}
@@ -28,7 +28,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "a ist das Maximum";
 
 	Assert.assertEquals("intMax(3, 2, 1) -> 3", 3, tester.intMax(3, 2, 1));
 	}
@@ -38,7 +38,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "mit duplizierter Zahl";
 
 	Assert.assertEquals("intMax(9, 3, 3) -> 9", 9, tester.intMax(9, 3, 3));
 	}
@@ -48,7 +48,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "mit duplizierter Zahl";
 
 	Assert.assertEquals("intMax(3, 9, 3) -> 9", 9, tester.intMax(3, 9, 3));
 	}
@@ -58,7 +58,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "mit duplizierter Zahl";
 
 	Assert.assertEquals("intMax(3, 3, 9) -> 9", 9, tester.intMax(3, 3, 9));
 	}
@@ -68,7 +68,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint " ";
 
 	Assert.assertEquals("intMax(8, 2, 3) -> 8", 8, tester.intMax(8, 2, 3));
 	}
@@ -78,7 +78,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint "mit negativer Zahl";
 
 	Assert.assertEquals("intMax(-3, -1, -2) -> -1", -1, tester.intMax(-3, -1, -2));
 	}
@@ -88,7 +88,7 @@ public class IntMaxTest {
 	Prog tester = new Prog();
 
 	//hidden 0;
-	//hint "Ein Hint";
+	//hint " ";
 
 	Assert.assertEquals("intMax(6, 2, 5) -> 6", 6, tester.intMax(6, 2, 5));
 	}
@@ -97,8 +97,8 @@ public class IntMaxTest {
 	public void testJ() {
 	Prog tester = new Prog();
 
-	//hidden 1;
-	//hint "Ein Hint";
+	//hidden 0;
+	//hint " ";
 
 	Assert.assertEquals("intMax(5, 6, 2) -> 6", 6, tester.intMax(5, 6, 2));
 	}
@@ -107,9 +107,49 @@ public class IntMaxTest {
 	public void testK() {
 	Prog tester = new Prog();
 
+	//hidden 0;
+	//hint " ";
+
+	Assert.assertEquals("intMax(5, 2, 6) -> 6", 6, tester.intMax(5, 2, 6));
+	}
+
+	@Test
+	public void testL() {
+	Prog tester = new Prog();
+
+	//hidden 0;
+	//hint "mit drei negativen Zahlen";
+
+	Assert.assertEquals("intMax(-2, -9, -3) -> -2", -2, tester.intMax(-2, -9, -3));
+	}
+
+	@Test
+	public void testM() {
+	Prog tester = new Prog();
+
+	//hidden 0;
+	//hint "mit einer Null";
+
+	Assert.assertEquals("intMax(-6, -3, 0) -> 0", 0, tester.intMax(-6, -3, 0));
+	}
+
+		@Test
+	public void testN() {
+	Prog tester = new Prog();
+
+	//hidden 0;
+	//hint "mit doppelt duplizierter Zahl";
+
+	Assert.assertEquals("intMax(0, 0, 0) -> 0", 0, tester.intMax(0, 0, 0));
+	}
+
+	@Test
+	public void testO() {
+	Prog tester = new Prog();
+
 	//hidden 1;
 	//hint "Ein Hint";
 
-	Assert.assertEquals("intMax(5, 2, 6) -> 6", 6, tester.intMax(5, 2, 6));
+	Assert.assertEquals("intMax(0, 0, 0) -> 0", 0, tester.intMax(0, 0, 0));
 	}
 }
