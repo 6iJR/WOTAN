@@ -76,12 +76,12 @@ class Java_Task extends Task {
         if(file_exists($this->testSourceFileName . "Test.java")) {
             // compile tests
             exec("/usr/bin/javac -cp .:../junit-4.12.jar:../hamcrest-core-1.3.jar "
-            . $this->testSourceFileName . "Test.java");
+            . $this->testSourceFileName . "Test.java 2>compileTest.out");
 
             // run tests
             $this->runTests($prog);
         } else {
-            $this->tests = "Tests konnten nicht durchgeführt werden, da die Methode umbenannt wurde!";
+            $this->tests = "Fehler: Tests konnten nicht durchgeführt werden, da die Methode umbenannt wurde!";
         }
     }
 
@@ -98,46 +98,33 @@ class Java_Task extends Task {
         //start [3][0]
         preg_match_all('/(assertEquals[(]["](.+)["]),\s(.+),\s[tester]/m', $testcode, $expected);
         //start [1][0]
-        preg_match_all('/hidden\s([0-1])/m', $testcode, $hidden);
-        //start [1][0]
         preg_match_all('/hint\s["](.+)["]/m', $testcode, $hints);
 
         $testresults = file_get_contents("testresults.out");
 
-        //counter for possible failed tests
-        $j = 0;
-        $hiddenflag1 = 0;
-        $hiddenflag2 = 0;
+        if(strpos($testresults, "StackOverflowError") === false) {
+            //counter for possible failed tests
+            $j = 0;
 
-        $this->tests .= "<table cellspacing=\"0\"><tr><th>Erwartetes Ergebnis</th><th>Dein Ergebnis</th><th></th><th></th><th>Hinweise</th></tr>";
-        for ($i = 0; $i < max(array_map('count', $descriptions)); $i++) {
-            if($hidden[1][$i] == 0) {
+            $this->tests .= "<table cellspacing=\"0\"><tr><th>Erwartetes Ergebnis</th><th>Dein Ergebnis</th><th></th><th></th><th>Hinweise</th></tr>";
+            for ($i = 0; $i < max(array_map('count', $descriptions)); $i++) {
                 $this->tests .= "<tr><td>" . $descriptions[2][$i] . "</td>";
                 if (strpos($testresults, $descriptions[2][$i]) === false) {
-                $this->tests .=     "<td>" . $expected[3][$i] . "</td>
-                                    <td>BESTANDEN</td><td style=\"width:20px;background-color:green\"></td>";
+                $this->tests .= "<td>" . $expected[3][$i] . "</td>
+                                <td>BESTANDEN</td><td style=\"width:20px;background-color:green\"></td>";
                 } else {
                 //start [1][0]
                 preg_match_all('/was:<(.+)>/m', $testresults, $studentresults);
-                $this->tests .=     "<td>" . $studentresults[1][$j] . "</td>
-                                    <td>NICHT BESTANDEN</td><td style=\"width:20px;background-color:red\"></td>";
+                $this->tests .= "<td>" . $studentresults[1][$j] . "</td>
+                                <td>NICHT BESTANDEN</td><td style=\"width:20px;background-color:red\"></td>";
                 $j++;
                 }
-                $this->tests .=     "<td>" . $hints[1][$i] . "</td></tr>";
-            } else if (strpos($testresults, $descriptions[2][$i]) === false) {
-                $hiddenflag1 = 1;
-            } else {
-                $hiddenflag2 = 1;
+                $this->tests .= "<td>" . $hints[1][$i] . "</td></tr>";
             }
+            $this->tests .= "</table>";
+        } else {
+            $this->tests .= "Fehler: Mindestens 1 Test resultierte in einem StackOverflowError!";
         }
-        if($hiddenflag2 == 1) {
-            $this->tests .= "<tr><td colspan=\"2\">" . "weitere Tests" . "</td>
-                            <td>NICHT BESTANDEN</td><td style=\"width:20px;background-color:red\"></td>";
-        } else if($hiddenflag1 == 1 && $hiddenflag2 == 0) {
-            $this->tests .= "<tr><td colspan=\"2\">" . "weitere Tests" . "</td>
-                            <td>BESTANDEN</td><td style=\"width:20px;background-color:green\"></td>";
-        }
-        $this->tests .= "</table>";
     }
 
     // A default name for Java programs. [Called only if API-call does

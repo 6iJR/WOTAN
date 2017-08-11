@@ -28,7 +28,7 @@ function sendCodeAce() {
             switch(result.outcome) {
                 case 11:
                     document.getElementById("outcome").innerHTML =
-                     "Code " + result.outcome + " - Compilation Error. See Compiler Info for further explanation.";
+                     "Code " + result.outcome + " - Compilation Error. See Compiler Info for further explanation:";
                     break;
                 case 12:
                     document.getElementById("outcome").innerHTML =

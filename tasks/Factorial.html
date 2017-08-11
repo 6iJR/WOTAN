@@ -7,7 +7,7 @@
   <script src="../js/challenge.js" type="text/javascript" charset="utf-8"></script>
   <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="../css/styles.css">
-  <title>IntMax</title>
+  <title>Factorial</title>
 </head>
 <body>
 
@@ -19,7 +19,8 @@
 <div class="titlebottom">Angewandte Informatik</div>
 <p></p>
 
-<div id="description"><p>In dieser Einstiegsaufgabe soll die Größte von drei Zahlen (a, b, c), also das Maximum, zurückgegeben werden.<br><br>
+<div id="description"><p>Die Fakultät ist eine Funktion, die einer natürlichen Zahl das Produkt aller natürlichen Zahlen (ohne Null) <br>kleiner und gleich dieser Zahl zuordnet.
+Sie soll mithilfe von Rekursion implementiert werden. <br>Eine rekursive Methode ist eine Methode, die sich selbst aufruft.<br><br>
   Das Schreiben von Klassenkopf sowie main-Methode ist nicht nötig, es soll nur der Methodenrumpf ergänzt werden.<br></p>
 </div>
 
@@ -27,20 +28,10 @@
   <tbody>
     <tr>
       <td class="indent" width="700" valign="top">
-<pre id="editor">public int intMax(int a, int b, int c) {
-  int max;
+<pre id="editor">public int factorial(int n) {
+  if (n == 1) return 1;
   
-  if (a > b) {
-    max = a;
-  } else {
-    max = b;
-  }
-  
-  if (c > max) {
-    max = c;
-  }
-  
-  return max;
+  return n * factorial(n-1);
 }</pre>
 
 <button id="button" onclick="sendCodeAce();">Ausführen</button>

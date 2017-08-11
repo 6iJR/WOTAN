@@ -7,7 +7,7 @@
   <script src="../js/challenge.js" type="text/javascript" charset="utf-8"></script>
   <script src="../js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="../css/styles.css">
-  <title>IntMax</title>
+  <title>Sum13</title>
 </head>
 <body>
 
@@ -19,7 +19,9 @@
 <div class="titlebottom">Angewandte Informatik</div>
 <p></p>
 
-<div id="description"><p>In dieser Einstiegsaufgabe soll die Größte von drei Zahlen (a, b, c), also das Maximum, zurückgegeben werden.<br><br>
+<div id="description"><p>Die Summe aller im Array nums befindlichen Zahlen soll zurückgegeben werden.<br>
+    Die Zahl 13 ist aber eine Unglückszahl, diese zählt nicht, das Gleiche gilt<br>
+    auch für die Zahl, die direkt hinter der 13 ist.<br><br>
   Das Schreiben von Klassenkopf sowie main-Methode ist nicht nötig, es soll nur der Methodenrumpf ergänzt werden.<br></p>
 </div>
 
@@ -27,20 +29,16 @@
   <tbody>
     <tr>
       <td class="indent" width="700" valign="top">
-<pre id="editor">public int intMax(int a, int b, int c) {
-  int max;
-  
-  if (a > b) {
-    max = a;
-  } else {
-    max = b;
+<pre id="editor">public int sum13(int[] nums) {
+  int sum = 0;
+  for(int i = 0; i < nums.length; i++) {
+    if(nums[i] != 13) {
+      sum += nums[i];
+    } else {
+      i++;
+    }
   }
-  
-  if (c > max) {
-    max = c;
-  }
-  
-  return max;
+  return sum;
 }</pre>
 
 <button id="button" onclick="sendCodeAce();">Ausführen</button>

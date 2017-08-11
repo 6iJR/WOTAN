@@ -6,7 +6,6 @@ public class GgtTest {
 	public void testA() {
 	Prog tester = new Prog();
 
-	//hidden 0;
 	//hint "Basisfall: GGT mit zwei negativen Zahlen";
 
 	Assert.assertEquals("ggt(-16, -4) -> -1", -1, tester.ggt(-16, -4));
@@ -16,7 +15,6 @@ public class GgtTest {
 	public void testB() {
 	Prog tester = new Prog();
 
-	//hidden 0;
 	//hint "Basisfall: GGT mit einer negativen Zahl";
 
 	Assert.assertEquals("ggt(-16, 4) -> -1", -1, tester.ggt(-16, 4));
@@ -26,7 +24,6 @@ public class GgtTest {
 	public void testC() {
 	Prog tester = new Prog();
 
-	//hidden 0;
 	//hint "Basisfall: GGT mit einer negativen Zahl";
 
 	Assert.assertEquals("ggt(16, -4) -> 1", -1, tester.ggt(16, -4));
@@ -36,7 +33,6 @@ public class GgtTest {
 	public void testD() {
 	Prog tester = new Prog();
 
-	//hidden 0;
 	//hint "Basisfall: y ist 0";
 
 	Assert.assertEquals("ggt(8, 0) -> 8", 8, tester.ggt(8, 0));
@@ -46,7 +42,6 @@ public class GgtTest {
 	public void testE() {
 	Prog tester = new Prog();
 
-	//hidden 0;
 	//hint "Basisfall: x ist 0";
 
 	Assert.assertEquals("ggt(0, 19) -> 19", 19, tester.ggt(0, 19));
@@ -56,8 +51,7 @@ public class GgtTest {
 	public void testF() {
 	Prog tester = new Prog();
 
-	//hidden 0;
-	//hint "Primzahlen";
+	//hint "Rekursivfall mit Primzahlen";
 
 	Assert.assertEquals("ggt(17, 7) -> 1", 1, tester.ggt(17, 7));
     }
@@ -66,8 +60,7 @@ public class GgtTest {
 	public void testG() {
 	Prog tester = new Prog();
 
-	//hidden 0;
-	//hint "Primzahlen";
+	//hint "Rekursivfall mit Primzahlen";
 
 	Assert.assertEquals("ggt(7, 17) -> 1", 1, tester.ggt(7, 17));
     }
@@ -76,8 +69,7 @@ public class GgtTest {
 	public void testH() {
 	Prog tester = new Prog();
 
-	//hidden 0;
-	//hint " ";
+	//hint "Rekursivfall";
 
 	Assert.assertEquals("ggt(3, 9) -> 3", 3, tester.ggt(3, 9));
     }
@@ -86,8 +78,7 @@ public class GgtTest {
 	public void testI() {
 	Prog tester = new Prog();
 
-	//hidden 0;
-	//hint " ";
+	//hint "Rekursivfall";
 
 	Assert.assertEquals("ggt(8, 6) -> 2", 2, tester.ggt(8, 6));
     }
@@ -96,8 +87,7 @@ public class GgtTest {
 	public void testJ() {
 	Prog tester = new Prog();
 
-	//hidden 0;
-	//hint " ";
+	//hint "Rekursivfall";
 
 	Assert.assertEquals("ggt(18, 24) -> 6", 6, tester.ggt(18, 24));
     }
@@ -106,8 +96,7 @@ public class GgtTest {
 	public void testK() {
 	Prog tester = new Prog();
 
-	//hidden 1;
-	//hint " ";
+	//hint "Rekursivfall";
 
 	Assert.assertEquals("ggt(3, 3) -> 3", 3, tester.ggt(3, 3));
 	}
