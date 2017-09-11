@@ -1,28 +1,14 @@
 <?xml version="1.0"?>
 <root>
     <htmlfile>
-        <filename></filename> <!-- without .html -->
-        <pagetitle></pagetitle>
-        <introtext></introtext>
-        <code>public int intMax(int a, int b, int c) {
-  int max;
-  
-  // First check between a and b
-  if (a > b) {
-    max = a;
-  } else {
-    max = b;
-  }
-  
-  // Now check between max and c
-  if (c > max) {
-    max = c;
-  }
-  
-  return max;
-  
-  // Could use the built in Math.max(x, y) function which selects the larger
-  // of two values.
+        <filename>GGT</filename> <!-- without .html -->
+        <pagetitle>GGT</pagetitle>
+        <introtext>&lt;p>In dieser Aufgabe soll der &lt;b>größte gemeinsame Teiler (GGT)&lt;/b> von &lt;b>zwei natürlichen Zahlen (>= 0)&lt;/b> zurückgegeben werden.&lt;br>
+  Ist mindestens eine Zahl negativ, soll -1 zurückgegeben werden.&lt;br>
+  Diese Aufgabe soll rekursiv gelöst werden. Eine rekursive Methode ist eine Methode, die sich selbst aufruft.&lt;br>&lt;br>
+  Das Schreiben von Klassenkopf sowie main-Methode ist nicht nötig, es soll nur der Methodenrumpf ergänzt werden.&lt;br>&lt;/p></introtext>
+        <code>public int ggt(int x, int y) {
+  return 0;
 }</code> <!-- the starting code. Watch format! -->
     </htmlfile>
     <testfile methodname=""> <!-- repeat just the method name from <code>. Example: intMax -->

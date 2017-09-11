@@ -167,7 +167,7 @@ class Java_Task extends Task {
 
     // TODO docu
     private function getMethodHead($prog) {
-        $pattern = '/(^|\W)(public|protected|private)\s+(void|int|double|String)\s+.*/ms';
+        $pattern = '/(^|\W)(public|protected|private)\s+(void|int|double|String|char|boolean|int\[\]|double\[\]|long\[\])\s+.*/ms';
         if (preg_match($pattern, $prog, $matches) !== 1) {
             return FALSE;
         }
@@ -177,7 +177,7 @@ class Java_Task extends Task {
     }
 
     private function getMethodName($prog) {
-        $pattern = '/(^|\W)(public|protected|private)\s+(void|int|double|String)\s+([a-zA-Z0-9]*)/ms';
+        $pattern = '/(^|\W)(public|protected|private)\s+(void|int|double|String|char|boolean|int\[\]|double\[\]|long\[\])\s+([a-zA-Z0-9]*)/ms';
         if (preg_match_all($pattern, $prog, $matches) !== 1) {
             return FALSE;
         }
@@ -187,7 +187,7 @@ class Java_Task extends Task {
     }
 
     private function clearFromComments($prog) {
-        $pattern = '#^.*//.*$#m';
+        $pattern = '#//.*#m';
         $prog = preg_replace($pattern, "", $prog);
         return $prog;
 

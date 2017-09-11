@@ -64,16 +64,30 @@ public class Authoringtool {
         "\n" +
         "<div id=\"loadingmessage\"><img src=\"../img/ajax-loader.gif\"/></div>\n" +
         "\n" +
+        "<div class=\"logo\"><a href=\"https://www.hs-fulda.de/\"><img src=\"../../img/logo.jpg\" width=\"274\" height=\"50\"/></a></div>\n" +
+        "<p><p>\n" +
+        "<div class=\"titletop titlebold\">Fachbereich</div>\n" +
+        "<div class=\"titlebottom\">Angewandte Informatik</div>\n" +
+        "<p></p>\n" +
+        "\n" +
+        "<div id=\"description\">" + doc.getElementsByTagName("introtext").item(0).getTextContent() + "</div>\n" +
+        "\n" +
+        "<table border=\"0\">\n\t" +
+            "<tbody>\n\t\t" +
+                "<tr>\n\t\t\t" +
+                    "<td class=\"indent\" width=\"700\" valign=\"top\">\n" +
         "<pre id=\"editor\">" + doc.getElementsByTagName("code").item(0).getTextContent() + "</pre>\n" +
         "\n" +
-        "<p id=\"result_outcome\" class=\"result_all\">Outcome: <span id=\"outcome\"></span></p>\n" +
-        "<p id=\"result_cmpinfo\" class=\"result_all\">Compiler Info: <span id=\"cmpinfo\"></span></p>\n" +
-        "<p id=\"result_stdout\" class=\"result_all\">Standard Output: <span id=\"stdout\"></span></p>\n" +
-        "<p id=\"result_stderr\" class=\"result_all\">Standard Error Output: <span id=\"stderr\"></span></p>\n" +
-        "<p id=\"result_tests\" class=\"result_all\">Test Results: <span id=\"tests\"></span></p>" +
-        "\n" +
-        "<button id=\"button\" onclick=\"sendCodeAce();\">Go</button>\n" +
-        "\n" +
+        "<button id=\"button\" onclick=\"sendCodeAce();\">Ausführen</button>\n\t\t\t" +
+        "</td>\n\t\t\t" +
+        "<td class=\"indent\" width=\"800\" valign=\"top\">\n\t\t\t\t" +
+        "<p id=\"result_outcome\" class=\"result_all\"><span id=\"outcome\"></span></p>\n\t\t\t\t" +
+        "<p id=\"result_cmpinfo\" class=\"result_all\"><span id=\"cmpinfo\"></span></p>\n\t\t\t\t" +
+        "<p id=\"result_tests\" class=\"result_all\">Testergebnisse: <span id=\"tests\"></span></p>\n\t\t\t" +
+        "</td>\n\t\t" +
+        "</tr>\n\t" +
+        "</tbody>\n" +
+        "</table>\n" +
         "<script>\n\t" +
             "var editor = ace.edit(\"editor\");\n\t" +
             "editor.setTheme(\"ace/theme/chrome\");\n\t" +
