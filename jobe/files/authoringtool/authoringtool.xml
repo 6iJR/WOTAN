@@ -1,23 +1,46 @@
 <?xml version="1.0"?>
+
+<!-- Das Autorentool. Leider ist die Implementierung für Arrays als Rückgabetyp und Strings als Rückgabetyp oder Parameter noch nicht fertig. -->
 <root>
     <htmlfile>
-        <filename>GGT</filename> <!-- without .html -->
-        <pagetitle>GGT</pagetitle>
-        <introtext>&lt;p>In dieser Aufgabe soll der &lt;b>größte gemeinsame Teiler (GGT)&lt;/b> von &lt;b>zwei natürlichen Zahlen (>= 0)&lt;/b> zurückgegeben werden.&lt;br>
-  Ist mindestens eine Zahl negativ, soll -1 zurückgegeben werden.&lt;br>
-  Diese Aufgabe soll rekursiv gelöst werden. Eine rekursive Methode ist eine Methode, die sich selbst aufruft.&lt;br>&lt;br>
-  Das Schreiben von Klassenkopf sowie main-Methode ist nicht nötig, es soll nur der Methodenrumpf ergänzt werden.&lt;br>&lt;/p></introtext>
-        <code>public int ggt(int x, int y) {
-  return 0;
-}</code> <!-- the starting code. Watch format! -->
+        <filename>Or35</filename> <!-- ohne .html -->
+        <pagetitle>Or35</pagetitle>
+        <introtext>&lt;p>Return true if the given non-negative number is a multiple of 3 or a multiple of 5. Use the % "mod" operator&lt;/p></introtext> <!-- Sollen HTML tags für die Formatierung benutzt werden, müssen diese escaped werden! &lt; für < und &gt; für > -->
+        <code>public boolean or35(int n) {
+  return (n % 3 == 0) || (n % 5 == 0);
+}</code> <!-- Der Startcode. Formatierung beachten! -->
     </htmlfile>
-    <testfile methodname=""> <!-- repeat just the method name from <code>. Example: intMax -->
-        <test>
-            <message></message> <!-- Example: intMax(1, 2, 3) -> 3 -->
-            <expectedvalue></expectedvalue> <!-- Examples: 3, 3.14, "foo" -->
-            <parameter></parameter>
-            <hidden></hidden> <!-- 0 or 1 -->
-            <hint></hint> <!-- -->
+    <testfile> 
+        <test methodname="or35"> <!-- Bei methodname den Namen der Methode aus <code> wiederholen. Beispiel: intMax -->
+            <message>or(3) -> true</message> <!-- Beispiel: intMax(1, 2, 3) -> 3 -->
+            <expectedvalue>true</expectedvalue> <!-- Erwarteter Wert. Beispiele:    3 
+                                                                                    3.14 
+                                                                                    true 
+                                                                                    -->
+            <parameter>3</parameter> <!-- Beispiele:    3
+                                                        3.14
+                                                        Bei mehreren Parametern: 3, 3.14, 7, 5
+                                                        new int[] {3, 1, 4}
+                                                        -->
+            <hint> </hint> <!-- Text für den Hinweis. Möglichst ohne Sonderzeichen. -->
+        </test>
+        <test methodname="or35">
+            <message>or(10) -> true</message>
+            <expectedvalue>true</expectedvalue>
+            <parameter>10</parameter>
+            <hint> </hint>
+        </test>
+        <test methodname="or35">
+            <message>or(8) -> true</message>
+            <expectedvalue>false</expectedvalue>
+            <parameter>8</parameter>
+            <hint> </hint>
+        </test>
+        <test methodname="or35">
+            <message>or(15) -> true</message>
+            <expectedvalue>true</expectedvalue>
+            <parameter>15</parameter>
+            <hint> </hint>
         </test>
     </testfile>
 </root>

@@ -4,7 +4,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
-import java.io.File;
+import java.io.*;
+import java.util.Scanner;
 
 /*
  * A Java class that creates a html page and java tests out of a parsed XML file.
@@ -17,6 +18,8 @@ public class Authoringtool {
     private DocumentBuilderFactory dbFactory;
     private DocumentBuilder dBuilder;
     private Document doc;
+
+    private Scanner scanner;
 
     private String htmlContent;
     private String testContent;
@@ -99,7 +102,52 @@ public class Authoringtool {
     }
 
     public void createJavaTests() {
-        
+        NodeList nList = doc.getElementsByTagName("test");
+        int firstTest = 10; // Start bei 10 aufgrund der JUnit Testreihenfolge!
+        testContent +=
+        "import static org.junit.Assert.assertEquals;\n" +
+        "import org.junit.*;\n" +
+        "\n" +
+        "public class " + doc.getElementsByTagName("filename").item(0).getTextContent() + "Test {\n" +
+        "\n";
+        for(int i = 0; i < nList.getLength(); i++) {
+            Node nNode = nList.item(i);
+            if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                testContent +=  "\t@Test\n\t" +
+                                "public void test" + Integer.toString(firstTest) + "() {\n\t" +
+                                "Prog tester = new Prog();\n\t" +
+                                "\n\t" +
+                                "//hint \"" + eElement.getElementsByTagName("hint").item(0).getTextContent() + "\"\n\t" +
+                                "\n\t" +
+                                "Assert.assertEquals(\"" + eElement.getElementsByTagName("message").item(0).getTextContent() + "\", " +
+                                eElement.getElementsByTagName("expectedvalue").item(0).getTextContent() + ", tester." +
+                                eElement.getAttribute("methodname") + "(" + eElement.getElementsByTagName("parameter").item(0).getTextContent() + "));\n\t" +
+                                "}\n\t" +
+                                "\n";
+                                firstTest++;
+            }
+        }
+        testContent +=
+        "}";
+    }
+
+    /*
+     *  ============================
+     *  WRITER
+     *  ============================
+     */
+
+    public void writeHTMLPage(String file) throws IOException, FileNotFoundException {
+        PrintWriter pw = new PrintWriter(file);
+        pw.println(htmlContent);
+        pw.close();
+    }
+
+    public void writeJavaTests(String file) throws IOException, FileNotFoundException {
+        PrintWriter pw = new PrintWriter(file);
+        pw.println(testContent);
+        pw.close();
     }
 
     /*
@@ -107,6 +155,11 @@ public class Authoringtool {
      *  GETTER
      *  ============================
      */
+
+    public Document getDoc() {
+        return doc;
+    }
+
     public String getHTMLContent() {
         return htmlContent;
     }
@@ -119,6 +172,57 @@ public class Authoringtool {
         Authoringtool at = new Authoringtool();
         at.parseXML();
         at.createHTMLPage();
+        at.createJavaTests();
+        System.out.println("==========================================================");
+        System.out.println("=                    HTML PAGE FILE                      =");
+        System.out.println("==========================================================");
         System.out.println(at.getHTMLContent());
+        System.out.println("==========================================================");
+        System.out.println("=                    JAVA TEST FILE                      =");
+        System.out.println("==========================================================");
+        System.out.println(at.getTestContent());
+
+        Scanner scanner = new Scanner(System.in);
+        String command = null;
+        
+        // Write HTML page
+        do {
+            System.out.print("Write HTML PAGE FILE to /var/www/html/tasks? (y/n) ");
+            command = scanner.nextLine();
+
+            if(command.equals("n")) {
+                System.out.println("No file written!");
+            } else if(command.equals("y")) {
+                try {
+                    at.writeHTMLPage("/var/www/html/tasks/" + at.getDoc().getElementsByTagName("filename").item(0).getTextContent() + ".html");
+                    System.out.println("File successfully written!");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Unknown command!");
+            }
+
+        } while(!command.equals("y") && !command.equals("n"));
+
+        // Write Java test page
+        do {
+            System.out.print("Write JAVA TEST FILE to /var/www/html/jobe/files/tests? (y/n) ");
+            command = scanner.nextLine();
+
+            if(command.equals("n")) {
+                System.out.println("No file written!");
+            } else if(command.equals("y")) {
+                try {
+                    at.writeJavaTests("/var/www/html/jobe/files/tests/" + at.getDoc().getElementsByTagName("filename").item(0).getTextContent() + "Test.java");
+                    System.out.println("File successfully written!");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Unknown command!");
+            }
+
+        } while(!command.equals("y") && !command.equals("n"));
     }
 }

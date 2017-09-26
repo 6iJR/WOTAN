@@ -29,10 +29,12 @@ class Java_Task extends Task {
             $params['numprocs'] = 256;  // Minimum for Java 8 JVM
         }
 
+        // clear all comments starting with //
         $source = $this->clearFromComments($source);
 
-        // TODO docu
-        if ($this->getMethodHead($source) && !$this->getMainClass($source)) {
+        // Add a standard class (Prog) + main method if the code contains
+        // a valid method header and doesn't have a class + main yet.
+        if ($this->getMethodHeader($source) && !$this->getMainClass($source)) {
             $source = "public class Prog {\n\t" . $source . "\n\n\t public static void main(String args[]) {\n\n\t}\n}" ;
         }
 
@@ -93,10 +95,10 @@ class Java_Task extends Task {
         exec("/usr/bin/java -cp .:../junit-4.12.jar:../hamcrest-core-1.3.jar org.junit.runner.JUnitCore "
          . $this->testSourceFileName . "Test 1>testresults.out");
 
-        //start [2][0]
-        preg_match_all('/(assertEquals[(]["](.+)["])/m', $testcode, $descriptions);
         //start [3][0]
-        preg_match_all('/(assertEquals[(]["](.+)["]),\s(.+),\s[tester]/m', $testcode, $expected);
+        preg_match_all('/((assertEquals|assertArrayEquals)[(]["](.+)["])/m', $testcode, $descriptions);
+        //start [4][0]
+        preg_match_all('/((assertEquals|assertArrayEquals)[(]["](.+)["]),\s(.+),\s[tester]/m', $testcode, $expected);
         //start [1][0]
         preg_match_all('/hint\s["](.+)["]/m', $testcode, $hints);
 
@@ -108,9 +110,9 @@ class Java_Task extends Task {
 
             $this->tests .= "<table cellspacing=\"0\"><tr><th>Erwartetes Ergebnis</th><th>Dein Ergebnis</th><th></th><th></th><th>Hinweise</th></tr>";
             for ($i = 0; $i < max(array_map('count', $descriptions)); $i++) {
-                $this->tests .= "<tr><td>" . $descriptions[2][$i] . "</td>";
-                if (strpos($testresults, $descriptions[2][$i]) === false) {
-                $this->tests .= "<td>" . $expected[3][$i] . "</td>
+                $this->tests .= "<tr><td>" . $descriptions[3][$i] . "</td>";
+                if (strpos($testresults, $descriptions[3][$i]) === false) {
+                $this->tests .= "<td>" . $expected[4][$i] . "</td>
                                 <td>BESTANDEN</td><td style=\"width:20px;background-color:green\"></td>";
                 } else {
                 //start [1][0]
@@ -165,8 +167,8 @@ class Java_Task extends Task {
         }
     }
 
-    // TODO docu
-    private function getMethodHead($prog) {
+    // Check if code contains a valid method header.
+    private function getMethodHeader($prog) {
         $pattern = '/(^|\W)(public|protected|private)\s+(void|int|double|String|char|boolean|int\[\]|double\[\]|long\[\])\s+.*/ms';
         if (preg_match($pattern, $prog, $matches) !== 1) {
             return FALSE;
@@ -176,6 +178,7 @@ class Java_Task extends Task {
         }
     }
 
+    // Return the name of the method or FALSE.
     private function getMethodName($prog) {
         $pattern = '/(^|\W)(public|protected|private)\s+(void|int|double|String|char|boolean|int\[\]|double\[\]|long\[\])\s+([a-zA-Z0-9]*)/ms';
         if (preg_match_all($pattern, $prog, $matches) !== 1) {
@@ -186,6 +189,7 @@ class Java_Task extends Task {
         }
     }
 
+    // Look for // in code and delete it + everything after it in the same line.
     private function clearFromComments($prog) {
         $pattern = '#//.*#m';
         $prog = preg_replace($pattern, "", $prog);
